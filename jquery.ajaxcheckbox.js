@@ -22,8 +22,9 @@
     }
 
     $.fn.ajaxcheckbox = function (options) {
-        function clickHandler() {
-            //noinspection JSHint
+        var clickHandler, isChecked;
+        
+        clickHandler = function () {
             var $this = $(this),
                 settings = getSettings(options, $this.data()),
                 params;
@@ -69,12 +70,11 @@
                     .addClass(settings.updatingClass);
                 $.post(settings.url, params).done(onDone).fail(onFail);
             }
-        }
+        };
 
         // public method
-        function isChecked() {
+        isChecked = function () {
             // we use the data value field, if exists
-            //noinspection JSHint
             var $this = $(this),
                 value = $this.data("value"),
                 settings;
@@ -91,7 +91,7 @@
                 return $this.hasClass(settings.checkedClass);
             }
             return null;
-        }
+        };
 
         if (options === 'isChecked') {
             return isChecked.apply($(this), $.makeArray(arguments).slice(1));
@@ -191,13 +191,13 @@
          *          class="ajaxcheckbox fa fa-check-square-o"></span>
          *  </div>
          *
-         *  <script>
+         *  &lt;script&gt;
          *  $('#user').ajaxcheckbox({
          *     selector: '.ajaxcheckbox',
          *     url: '/crud',
          *     pk: 1
          * });
-         *  </script>
+         *  &lt;/script&gt;
          **/
         selector: null,
 
