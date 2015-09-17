@@ -29,11 +29,16 @@
                 params;
 
             function onDone(data) {
+                // success callback, default null so it won't enter the block
+                if (settings.success) {
+                    data = settings.success(data);
+                }
+
                 $this.removeClass(settings.updatingClass);
                 if (typeof data !== 'boolean') {
                     $this
                         .addClass(settings.errorClass)
-                        .trigger("ajaxcheckbox.error");
+                        .trigger("error.ajaxcheckbox");
                 } else {
                     $this
                         .addClass(getClass(data, settings))
@@ -46,7 +51,7 @@
                 $this
                     .removeClass(settings.updatingClass)
                     .addClass(settings.errorClass)
-                    .trigger("ajaxcheckbox.error");
+                    .trigger("error.ajaxcheckbox");
             }
 
             if (isNormalState($this, settings)) {
@@ -195,6 +200,33 @@
          *  </script>
          **/
         selector: null,
+
+        /**
+         * Success callback. Called upon receiving succesful response from server (status code = 200).
+         * It is called before updating the control. The server response must be a valid JSON response.
+         * <p/>
+         * The callback function receives the response as the first argument.
+         * <p/>
+         * The funcion should return the boolean value that should be updated on the control.
+         * <p/>
+         * A common usage scenario is when you detect, server-side, that the value can't be changed.
+         * You want to keep the original value and, probably, display a message to the user. See the
+         * example below.
+         *
+         *  @property sucess
+         *  @type function
+         *  @default null
+         *  @example
+         *  $("#user").ajaxcheckbox({
+         *      success: function(response) {
+         *          if (!response.ok) {
+         *              showUserMessage(response.msg);
+         *          }
+         *          return response.checkValue;
+         *      }
+         *  });
+         */
+        success: null,
 
         /**
          * CSS class name for the checked state.

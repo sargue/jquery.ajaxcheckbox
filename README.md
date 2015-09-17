@@ -22,6 +22,9 @@ Just load jquery.ajaxcheckbox.js after loading jQuery.
 
 ### Direct usage
 
+Notice that we don't need to indicate any initial CSS class as the element has an initial value 
+expressed inside the HTML5 data attribute `data-value`.
+
 HTML:
 
 ```html
@@ -36,6 +39,9 @@ $(".ajaxcheckbox").ajaxcheckbox();
 ```
 
 ### Usage by delegation
+
+Remember: when using delegation we need to manually set the initial value CSS class (in the example
+`fa-check-square-o`).
 
 HTML:
 
@@ -64,7 +70,7 @@ The default options are under `$.fn.ajaxcheckbox.defaults`
 
 Options can be defined upon invocation of the plugin or via data-* attributes.
 The latter have preference. So, for each setting there are three places to
-look at (in this order): data attribute, invocation settings, global settings
+look at (in this order): data attribute (HTML), invocation settings (JS), global settings (JS)
 
 Property | Type | Default | Description
 ---------|------|---------|------------
@@ -78,6 +84,7 @@ checkedClass | string | "fa-check-square-o" | CSS class name for the checked sta
 uncheckedClass | string | "fa-square-o" | CSS class name for the unchecked state.
 updatingClass | string | "fa-exchange" | CSS class name for the updating state (while the Ajax call is on).
 errorClass | string | "fa-exclamation-triangle" | CSS class name for the error state.
+success | function | null | Success callback. Called upon receiving succesful response from server (status code = 200).
 
 ## Ajax request
 
@@ -87,7 +94,8 @@ The first three parameters are taken from the settings, the last one is the
 boolean value of the checkbox.
 
 The POST request expects a JSON response with a primitive boolean indicating
-the final status of the checkbox.
+the final status of the checkbox. Alternatively, if you are using the success callback, you can
+send a full JSON object which will be processed by your success callback.
 
 ## Methods
 
@@ -111,7 +119,7 @@ The widget triggers some events:
 
 * `change`: the standard event is triggered on change upon a succesful ajax 
 request (actually on the `onDone` ajax handler)
-* `ajaxcheckbox.error`: a custom event to signal that an error has ocurred
+* `error.ajaxcheckbox`: a custom event to signal that an error has ocurred
 
 ## TODO
 
