@@ -20,6 +20,14 @@ css classes of the element on each state change.
 
 Just load jquery.ajaxcheckbox.js after loading jQuery.
 
+#### CDN
+
+You can use [RawGit](https://rawgit.com/)'s excellent CDN support and put this directly on your HTML.
+
+```html
+<script src="https://cdn.rawgit.com/sargue/jquery.ajaxcheckbox/master/jquery.ajaxcheckbox.js"></script>
+```
+
 ### Direct usage
 
 Notice that we don't need to indicate any initial CSS class as the element has an initial value 
