@@ -16,9 +16,9 @@ css classes of the element on each state change.
 
 ## Usage
 
-### Loading
+### Local usage
 
-Just load jquery.ajaxcheckbox.js after loading jQuery.
+Just load `jquery.ajaxcheckbox.js` after loading jQuery.
 
 #### CDN
 
