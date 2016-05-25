@@ -1,15 +1,20 @@
 # jquery.ajaxCheckbox
 
 This is a jQuery plugin that creates a checkbox-like control which
-propagates state immediately using an Ajax call.
+propagates state immediately using an ajax call.
 
 ## How it works
 
-Instead of a classic `<input>` checkbox we use different icons on a element
+Instead of a classic `<input>` checkbox we use different icons on an element
 (usually a span) to show the state. The state is expressed through
 different CSS classes.
 
-There are four different states: checked, unchecked, updating and error
+There are four different states:
+
+* checked
+* unchecked
+* updating
+* error
 
 The default implementation uses FontAwesome icons. The control swaps
 css classes of the element on each state change.
@@ -76,27 +81,28 @@ $('#user').ajaxcheckbox({
 
 The default options are under `$.fn.ajaxcheckbox.defaults`
 
-Options can be defined upon invocation of the plugin or via data-* attributes.
+Options can be defined upon invocation of the plugin or via *data-** attributes.
 The latter have preference. So, for each setting there are three places to
 look at (in this order): data attribute (HTML), invocation settings (JS), global settings (JS)
 
 Property | Type | Default | Description
 ---------|------|---------|------------
-id | string | null | Value of parameter 'id' sent to the server on the Ajax request.
-url | string | null | The Ajax request URL.
-name | string | null | Value of parameter 'name' sent to the server on the Ajax request.
+id | string | null | Value of parameter `id` sent to the server on the ajax request.
+url | string | null | The ajax request URL.
+name | string | null | Value of parameter `name` sent to the server on the ajax request.
+action | string | "ipe-" + `name` | Value of parameter `action` sent to the server on the ajax request. Constructed using the `name` parameter by default.
 extraParams | object | {} | Additional parameters sent on each request.
 value | boolean | null | Initial value to set upon control initialization. Cannot be used with delegation (selector option).
-selector | string | null | You can use a selector to apply the behaviour by delegation. See http://api.jquery.com/on/ for reference. Useful on dynamically created or updated elements. Note that you can't set a initial value (value option).
+selector | string | null | You can use a selector to apply the behaviour by delegation. See http://api.jquery.com/on/ for reference. Useful on dynamically created or updated elements. Note that you can't set a initial value (`value` option).
 checkedClass | string | "fa-check-square-o" | CSS class name for the checked state.
 uncheckedClass | string | "fa-square-o" | CSS class name for the unchecked state.
-updatingClass | string | "fa-exchange" | CSS class name for the updating state (while the Ajax call is on).
+updatingClass | string | "fa-exchange" | CSS class name for the updating state (while the ajax call is on).
 errorClass | string | "fa-exclamation-triangle" | CSS class name for the error state.
 success | function | null | Success callback. Called upon receiving succesful response from server (status code = 200).
 
 ## Ajax request
 
-The Ajax request is a POST with this basic parameters: id, name, action, value
+The ajax request is a POST with this basic parameters: id, name, action, value
 
 The first three parameters are taken from the settings, the last one is the
 boolean value of the checkbox.
