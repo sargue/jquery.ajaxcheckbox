@@ -111,6 +111,11 @@ The POST request expects a JSON response with a primitive boolean indicating
 the final status of the checkbox. Alternatively, if you are using the success callback, you can
 send a full JSON object which will be processed by your success callback.
 
+## Success callback
+
+Called upon receiving succesful response from server (status code = 200). Receives the data returned by the server as its sole argument.
+Must return a boolean indicating the final status of the checkbox.
+
 ## Methods
 
 There is currently only one public method: `isChecked`
